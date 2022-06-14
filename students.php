@@ -11,11 +11,15 @@ if (isset($_GET['del'])) {
     $sqlDel = "DELETE FROM `students` WHERE `ID` = '" . $_GET['del'] . "'";
     $resultDel = mysqli_query($conn, $sqlDel);
 
-    if (!$resultDel) {
+    $numRow = mysqli_num_rows($resultDel);
+
+    if ($numRow == 0) {
         echo "<script>alert('ID doesn't exist!');
                 history.go(-1);</script> ";
     } else {
-        echo "<script> alert('Your data is Successfully Added!!')</script>";
+        if($resultDel) {
+            echo "<script> alert('Your data is Successfully Deleted!!')</script>";
+        }
     }
 }
 ?>
@@ -90,6 +94,10 @@ if (isset($_GET['del'])) {
                     </select>
                 </div>
 
+                <div>
+                    <input type="hidden" name="alert" value="">    
+                </div>
+
                 <button type="submit" class="btn btn-success col">Search</button>
 
             </div>
@@ -123,7 +131,9 @@ if (isset($_GET['del'])) {
                     <?php
                     $filter = "";
                     $where = "";
+                    
                     if ($_SERVER['REQUEST_METHOD'] == "GET") {
+
                         $where = "";
 
                         foreach ($fields as $key => $value) {
