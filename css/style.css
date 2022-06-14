@@ -1,0 +1,27 @@
+/* .login-box {
+
+} */
+
+.login-box {
+    padding: 30px;
+    margin-top: 200px;
+}
+
+.input-btn,
+.inputs {
+    line-height: 1;
+    padding: 10px;
+}
+
+.input-btn {
+    width: 150px;
+}
+
+.inputs {
+    margin: 20px;
+    width: 400px;
+}
+
+nav {
+    background-color: rgb(211, 139, 139);
+}
