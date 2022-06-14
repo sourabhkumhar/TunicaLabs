@@ -64,26 +64,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fetchSql = "SELECT * FROM `students` WHERE `ID` = '" . $_GET['id'] . "'";
             $fetchResult = mysqli_query($conn, $fetchSql);
 
-            $n = 0;
             $row = mysqli_fetch_array($fetchResult);
         }
         ?>
 
 
             <div class="my-3">
-                <input type="number" name="ID" placeholder="Enter ID" class="form-control" <?php echo 'value=' . $_GET['id'] ?> Cann disabled required>
+                <input type="number" name="ID" placeholder="Enter ID" class="form-control" <?php echo 'value=' . $_GET['id'] ?> disabled required>
             </div>
             
             <div class="my-3">
-                <input type="text" name="Name" placeholder="Full Name" class="form-control" <?php echo 'value=' . $row[1] ?>  required>
+                <input type="text" name="Name" placeholder="Full Name" class="form-control" <?php echo 'value="' . $row[1] . '"' ?>  required>
             </div>
 
             <div class="my-3">
-                <input type="date" name="DoB" class="form-control" <?php echo 'value=' . $row[2] ?> required>
+                <input type="date" name="DoB" class="form-control" <?php echo 'value="' . $row[2] . '"' ?> required>
             </div>
 
             <div class="">
-                <input type="text" name="School" class="form-control" placeholder="School Name" <?php echo 'value=' . $row[3] ?> required>
+                <input type="text" name="School" class="form-control" placeholder="School Name" <?php echo 'value="' . $row[3] . '"' ?> required>
             </div>
 
             <div class="my-3">

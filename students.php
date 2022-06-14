@@ -1,7 +1,7 @@
 <?php include('connect.php');
 
 if ($_SERVER['REQUEST_URI'] == "/tunicalabs/students.php") {
-    header("location: students.php?ID=&Name=&DoB=&School=&Class=&Division=");
+    header("location: students.php?ID=&Name=&DoB=&School=&Class=&Division=&alert=");
 }
 
 ?>
@@ -28,10 +28,8 @@ if (isset($_GET['del'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login/Signup</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,0" />
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -44,10 +42,12 @@ if (isset($_GET['del'])) {
     <?php
     if ($_GET['alert']) {
         $alert = $_GET['alert'];
-        echo '<div class="alert alert-' . $alert . ' alert-dismissible fade show container" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        if ($alert == "success") {
+            echo '<div class="alert alert-' . $alert . ' alert-dismissible fade show container" role="alert">
+            <strong>' . ucfirst($alert) . '!</strong> Your data is successfully updated.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
+        }
     }
     ?>
 
@@ -178,9 +178,7 @@ if (isset($_GET['del'])) {
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>
