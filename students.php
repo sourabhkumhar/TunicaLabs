@@ -1,6 +1,6 @@
 <?php include('connect.php');
 
-if ($_SERVER['REQUEST_URI'] == "/tunicalabs/students.php") {
+if ($_SERVER['REQUEST_URI'] == "/TunicaLabs/students.php") {
     header("location: students.php?ID=&Name=&DoB=&School=&Class=&Division=&alert=");
 }
 
@@ -11,17 +11,16 @@ if (isset($_GET['del'])) {
     $sqlDel = "DELETE FROM `students` WHERE `ID` = '" . $_GET['del'] . "'";
     $resultDel = mysqli_query($conn, $sqlDel);
 
-    $numRow = mysqli_num_rows($resultDel);
-
-    if ($numRow == 0) {
+    if (!$resultDel) {
         echo "<script>alert('ID doesn't exist!');
-                history.go(-1);</script> ";
+                    history.go(-1);</script> ";
     } else {
-        if($resultDel) {
-            echo "<script> alert('Your data is Successfully Deleted!!')</script>";
-        }
+        echo "<script> alert('Your data is Successfully Deleted!!')</script>";
+        header("location: students.php");
     }
 }
+
+
 ?>
 
 <!doctype html>
@@ -95,7 +94,7 @@ if (isset($_GET['del'])) {
                 </div>
 
                 <div>
-                    <input type="hidden" name="alert" value="">    
+                    <input type="hidden" name="alert" value="">
                 </div>
 
                 <button type="submit" class="btn btn-success col">Search</button>
@@ -131,7 +130,7 @@ if (isset($_GET['del'])) {
                     <?php
                     $filter = "";
                     $where = "";
-                    
+
                     if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
                         $where = "";
@@ -151,7 +150,7 @@ if (isset($_GET['del'])) {
                                 $where = "WHERE ";
                             }
 
-                            $filter .= " " . $value . " = '" . $data[$key] . "' OR ";
+                            $filter .= " " . $value . " = '" . $data[$key] . "' AND ";
                         }
                     } else {
                         $filter = "";
